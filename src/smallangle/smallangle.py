@@ -9,11 +9,13 @@ import pandas as pd
 
 #define the group of commands
 @click.group()
-def small_angle():
+def smallangle():
+    """group of smallangle, calculates the sinus or tangens of a given amount of values between 0 and 2pi
+    """
     pass
 
 
-@small_angle.command()
+@smallangle.command()
 @click.option(
     "-n",
     "--number",
@@ -21,14 +23,22 @@ def small_angle():
     help = "The amount of values you want to calculate between 0 and 2 pi",
     show_default = True
 )
-# calculates the sinus of x for N values of x between 0 and 2pi
+
+# calculates the sinus of x for a given amount of values of x between 0 and 2pi
 def sin(number):
+    """Calculates the sinus of x for a given amount of values of x between 0 and 2pi
+
+    Args:
+        number (integer): The amount of values the sinus is calculated for. Splits in equal parts between 0 and 2 pi
+
+    
+    """
     x = np.linspace(0, 2 * pi, number)
     df = pd.DataFrame({"x": x, "sin (x)": np.sin(x)})
     print(df)
     return
 
-@small_angle.command()
+@smallangle.command()
 @click.option(
     "-n",
     "--number",
@@ -36,8 +46,14 @@ def sin(number):
     help = "The amount of values you want to calculate between 0 and 2 pi",
     show_default = True
 )
-# calculates the tangens of x for N values of x between 0 and 2pi
+
+# calculates the tangens of x for a given amount of values of x between 0 and 2pi
 def tan(number):
+    """Calculates the tangens of x for a given amount of values of x between 0 and 2pi
+
+    Args:
+        number (integer): The amount of values the tangens is calculated for. Splits in equal parts between 0 and 2 pi
+    """
     x = np.linspace(0, 2 * pi, number)
     df = pd.DataFrame({"x": x, "tan (x)": np.tan(x)})
     print(df)
@@ -45,4 +61,4 @@ def tan(number):
 
 #makes it so small angle can be called from anywhere
 if __name__ == "__main__":
-    small_angle()
+    smallangle()
